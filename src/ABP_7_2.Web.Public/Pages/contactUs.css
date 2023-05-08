@@ -1,0 +1,9 @@
+ul.info-list {
+    list-style-type: none;
+    padding-left: 8px;
+    margin-top: 1rem;
+}
+
+ul.info-list li{
+    padding: 10px;
+}

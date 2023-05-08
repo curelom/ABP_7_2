@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+        <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>ABP_7_2.MauiBlazor</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <EnableDefaultCssItems>false</EnableDefaultCssItems>
+
+        <!-- Display name -->
+        <ApplicationTitle>ABP_7_2.MauiBlazor</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.abp_7_2.mauiblazor</ApplicationId>
+        <ApplicationIdGuid>c4b7650e-323f-4b5d-ab0d-d22b90e2324a</ApplicationIdGuid>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+        <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.2.164-beta" />
+    </ItemGroup>
+
+	<ItemGroup>
+        <PackageReference Include="Blazorise.Bootstrap5" Version="1.2.0" />
+        <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.2.0" />
+        <PackageReference Include="Blazorise.Components" Version="1.2.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
+        <PackageReference Include="IdentityModel.OidcClient" Version="5.1.0" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.0" />
+	</ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.MauiBlazor.LeptonXTheme" Version="2.2.*-*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Autofac" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.SettingManagement.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.Identity.Pro.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Saas.Host.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.Account.Pro.Admin.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.TextTemplateManagement.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.AuditLogging.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.LanguageManagement.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.OpenIddict.Pro.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.Abp.Gdpr.Blazor" Version="7.2.1" />
+        <PackageReference Include="Volo.CmsKit.Pro.Admin.Blazor" Version="7.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\ABP_7_2.HttpApi.Client\ABP_7_2.HttpApi.Client.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="appsettings*.json" />
+      <EmbeddedResource Include="appsettings*.json" />
+    </ItemGroup>
+
+</Project>

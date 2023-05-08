@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ABP_7_2.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:ABP_7_2.Maui.Extensions"
+    xmlns:local="clr-namespace:ABP_7_2.Maui"
+    xmlns:pages="clr-namespace:ABP_7_2.Maui.Pages">
+
+    <Shell.FlyoutHeader>
+        <Label HeightRequest="100" BackgroundColor="DarkSlateBlue" Text="{Binding CurrentUserName}"
+               FontSize="Subtitle"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="{ext:Translate Home}">
+        <Tab>
+            <ShellContent
+            ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{ext:Translate Users}" IsVisible="{Binding IsIdentityUserPageVisible}">
+        <Tab>
+            <ShellContent 
+            ContentTemplate="{DataTemplate pages:IdentityUserPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+</Shell>

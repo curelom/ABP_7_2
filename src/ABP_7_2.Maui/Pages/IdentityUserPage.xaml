@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:ABP_7_2.Maui.Extensions"
+             x:Class="ABP_7_2.Maui.Pages.IdentityUserPage"
+             Title="{ext:Translate Users}">
+    
+    <StackLayout>
+        <Button Text="{ext:Translate NewUser}" Margin="10" Command="{Binding OpenCreateModalCommand}" />
+
+        <RefreshView IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding RefreshCommand}">
+            <CollectionView x:Name="userCollectionView"
+                            ItemsSource="{Binding Items}"
+                            SelectionMode="None">
+                <CollectionView.Header>
+                    <SearchBar Text="{Binding Input.Filter}" SearchCommand="{Binding RefreshCommand}" />
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="{ext:Translate Edit}"
+                                               BackgroundColor="{StaticResource Primary}"
+                                               Command="{Binding Source={x:Reference userCollectionView}, Path=BindingContext.OpenEditModalCommand}"
+                                               CommandParameter="{Binding Id}" />
+
+                                    <SwipeItem Text="{ext:Translate Delete}"
+                                               BackgroundColor="{StaticResource Destructive}"
+                                               IsDestructive="True"
+                                               Command="{Binding Source={x:Reference userCollectionView}, Path=BindingContext.DeleteCommand}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Grid StyleClass="ListViewItem" Padding="10" RowDefinitions="Auto,Auto" RowSpacing="5">
+                                <Label Text="{Binding UserName, StringFormat='@{0}'}" FontAttributes="Bold" />
+                                <Label Text="{Binding Email}" Grid.Row="1" />
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
+    
+</ContentPage>

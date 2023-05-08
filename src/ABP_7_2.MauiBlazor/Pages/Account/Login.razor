@@ -1,0 +1,12 @@
+﻿@page "/Account/Login"
+@using Volo.Abp.Account.Localization
+@using Microsoft.Extensions.Localization
+@inherits ABP_7_2ComponentBase
+
+@inject IStringLocalizer<AccountResource> AccountStringLocalizer
+
+@AccountStringLocalizer["SignIn"]...
+
+<div class="mt-2">
+    <Button Color="Color.Primary" Clicked="@Cancel" class="mb-3">@AccountStringLocalizer["Cancel"]</Button>
+</div>

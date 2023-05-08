@@ -1,0 +1,60 @@
+﻿@page "/contact-us"
+@model ABP_7_2.Web.Public.Pages.ContactUsModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ABP_7_2.Localization
+@using Volo.Abp.GlobalFeatures
+@using Volo.CmsKit.GlobalFeatures
+@using Volo.CmsKit.Pro.Public.Web.Pages.Public.Shared.Components.Contact
+@inject IHtmlLocalizer<ABP_7_2Resource> L
+
+@section styles {
+    <abp-style src="/Pages/contactUs.css" />
+}
+
+<abp-card>
+    <abp-card-header>
+        <h2>
+            Contact Us
+        </h2>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-row>
+            <abp-column>
+                <div class="text-center">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26590542.506394275!2d-53.16781919655594!3d-65.99760107552216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa4b9967b3390754b%3A0x6e52be1f740f2075!2sAntarktika!5e0!3m2!1str!2str!4v1608034518004!5m2!1str!2str"
+                            width="600"
+                            align="middle"
+                            height="200"
+                            frameborder="0"
+                            style="border:0;"
+                            allowfullscreen=""
+                            aria-hidden="false"
+                            tabindex="0"></iframe>
+                </div>
+
+                <ul class="info-list">
+                    <li>
+                        <i class="fa fa-home"></i> <b>Adress:</b><br />Penguin street, No: 1234 Antartica / WORLD
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i> <b>Phone:</b><br />+999 999 99 999
+                    </li>
+                    <li>
+                        <i class="fa fa-mail-bulk"></i> <b>Email</b><br /> <a href="mailto:info@abp.io">info@abp.io</a>
+                    </li>
+                </ul>
+
+            </abp-column>
+            
+            @if (GlobalFeatureManager.Instance.IsEnabled<ContactFeature>())
+            {
+                <abp-column>
+                    @{
+                        <h3>Stay in touch</h3>
+                        @await Component.InvokeAsync(typeof(ContactViewComponent))
+                    }
+                </abp-column>
+            }
+        </abp-row>
+    </abp-card-body>
+</abp-card>

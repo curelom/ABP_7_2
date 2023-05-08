@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:ABP_7_2.Maui.Extensions"
+             x:Class="ABP_7_2.Maui.Pages.IdentityUserCreateModalPage"
+             Title="{ext:Translate NewUser}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{ext:Translate Cancel}" Command="{Binding CancelCommand}"/>
+        <ToolbarItem Text="{ext:Translate Save}" Command="{Binding CreateCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Margin="10" Padding="10">
+        <Label Text="{ext:Translate DisplayName:UserName}" />
+        <Entry Text="{Binding User.UserName}" />
+        <Label Text="{ext:Translate DisplayName:Password}" />
+        <Entry Text="{Binding User.Password}" IsPassword="True" />
+        <Label Text="{ext:Translate DisplayName:Name}" />
+        <Entry Text="{Binding User.Name}" />
+        <Label Text="{ext:Translate DisplayName:Surname}" />
+        <Entry Text="{Binding User.Surname}" />
+        <Label Text="{ext:Translate DisplayName:Email}" />
+        <Entry Text="{Binding User.Email}" Keyboard="Email" />
+        <Label Text="{ext:Translate DisplayName:PhoneNumber}" />
+        <Entry Text="{Binding User.PhoneNumber}" Keyboard="Telephone"/>
+        <StackLayout VerticalOptions="Start" Orientation="Horizontal" Padding="0, 10">
+            <Label Text="{ext:Translate DisplayName:IsActive}" VerticalOptions="Center" />
+            <CheckBox x:Name="isActiveCheckbox" IsChecked="{Binding User.IsActive}" />
+            <Label Text="{ext:Translate DisplayName:LockoutEnabled}" VerticalOptions="Center" />
+            <CheckBox x:Name="accountLockoutCheckbox" IsChecked="{Binding User.LockoutEnabled}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

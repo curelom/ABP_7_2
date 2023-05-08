@@ -1,0 +1,25 @@
+{
+  "production": true,
+  "application": {
+    "baseUrl":"http://localhost:4200",
+    "name": "ABP_7_2",
+    "logoUrl": ""
+  },
+  "oAuthConfig": {
+    "issuer": "https://localhost:44354/",
+    "redirectUri": "http://localhost:4200",
+    "clientId": "ABP_7_2_App",
+    "responseType": "code",
+    "scope": "offline_access openid profile email phone ABP_7_2"
+  },
+  "apis": {
+    "default": {
+      "url": "https://localhost:44354",
+      "rootNamespace": "ABP_7_2"
+    },
+    "AbpAccountPublic": {
+      "url": "https://localhost:44354",
+      "rootNamespace": "AbpAccountPublic"
+    }
+  }
+}
